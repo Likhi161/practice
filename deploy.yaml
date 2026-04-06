@@ -23,15 +23,6 @@ spec:
       - name: nginx
         image: nginx:latest
         imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/conf.d
-      volumes:
-      - name: nginx-config
-        hostPath:
-          path: /etc/nginx/conf.d
-        ports:
-        - containerPort: 80
         resources:
           limits:
             memory: "128Mi"
@@ -39,4 +30,10 @@ spec:
           requests:
             memory: "64Mi"
             cpu: "100m"
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: nginx-config
+        emptyDir: {}
        
