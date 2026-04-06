@@ -8,15 +8,15 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      name:nginxreplicaset
+      name: nginxreplicaset
   template:
     metadata:
       labels:
         name: nginxreplicaset
     spec:
      conatiners:
-      - name: nginx
-        image: niginx:latest
-        ports:
-        - containerPort: 80
+     - name: nginx
+       image: niginx:latest
+       ports:
+       - containerPort: 80
         
