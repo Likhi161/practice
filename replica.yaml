@@ -14,7 +14,7 @@ spec:
       labels:
         name: nginxreplicaset
     spec:
-     conatiners:
+     containers:
      - name: nginx
        image: niginx:latest
        ports:
