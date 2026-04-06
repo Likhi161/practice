@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    name: nginx
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    maxUnavailable: 25%
+    maxSurge: 25%
+  selector:
+    matchLabels:
+      name: nginxdeployment
+    template:
+      metadata:
+        labels:
+          name: nginxdeployment
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d
+        volumes:
+        - name: nginx-config
+          hostPath:
+            path: /etc/nginx/conf.d
+          ports:
+          - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+       
