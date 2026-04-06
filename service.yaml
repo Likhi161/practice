@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    name: nginxdeployment
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5001
