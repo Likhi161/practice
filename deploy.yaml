@@ -14,24 +14,24 @@ spec:
   selector:
     matchLabels:
       name: nginxdeployment
-    template:
-      metadata:
-        labels:
-          name: nginxdeployment
-      spec:
-        containers:
-        - name: nginx
-          image: nginx:latest
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-          - name: nginx-config
-            mountPath: /etc/nginx/conf.d
-        volumes:
+  template:
+    metadata:
+      labels:
+        name: nginxdeployment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
         - name: nginx-config
-          hostPath:
-            path: /etc/nginx/conf.d
-          ports:
-          - containerPort: 80
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: nginx-config
+        hostPath:
+          path: /etc/nginx/conf.d
+        ports:
+        - containerPort: 80
         resources:
           limits:
             memory: "128Mi"
